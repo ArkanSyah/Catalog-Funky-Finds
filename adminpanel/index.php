@@ -9,41 +9,83 @@
     $jumlahproduk = mysqli_num_rows($queryproduk);
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Database</title>
+    <title>Home Dashboard</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../fontawesome/css/fontawesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 
 <style>
-    .kotak{
-        border: solid;
+    body {
+        background-color: #f4f6f9;
+        font-family: 'Inter', sans-serif;
+        color: #333;
     }
-    .summary-kategori{
-        background-color: #0a6b4a;
+    .dashboard-header {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 30px;
+    }
+    .breadcrumb {
+        background-color: transparent;
+    }
+    .card {
+        border: none;
         border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
     }
-    .summary-produk{
-        background-color: #0a516b;
-        border-radius: 15px;
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     }
-    .no-decoration{
+    .card-header {
+        background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+        color: white;
+        padding: 20px;
+    }
+    .card-icon {
+        font-size: 3rem;
+        color: white;
+    }
+    .card-body {
+        padding: 20px;
+    }
+    .card-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+    .card-text {
+        font-size: 1.2rem;
+        color: #666;
+    }
+    .link-custom {
+        font-weight: 600;
+        color: #6c5ce7;
         text-decoration: none;
     }
-    .no-decoration:hover{
-        color: blue;
+    .link-custom:hover {
+        color: #4834d4;
+        text-decoration: underline;
     }
-
-
+    footer {
+        margin-top: 50px;
+        padding: 20px 0;
+        background-color: #f8f9fa;
+        text-align: center;
+        font-size: 0.9rem;
+        color: #666;
+    }
 </style>
 
 <body>
-    <?php require "navbar.php"?>
+    <?php require "navbar.php" ?>
     <div class="container mt-5">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -52,43 +94,37 @@
                 </li>
             </ol>
         </nav>
-        <h2>Halo <?php echo $_SESSION['username'];?></h2>
 
-        <div class="container mt-5">
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-12 mb-3">
-                    <div class="summary-kategori p-3">
-                        <div class="row">
-                            <div class="col-6">
-                                <i class="fas fa-align-justify fa-7x text-black-50"></i>
-                            </div>
-                            <div class="col-6 text-white">
-                                <h3 class="fs-2">Kategori</h3>
-                                <p class="fs-4"><?php echo $jumlahkategori;?> Kategori</p>
-                                <p><a href="kategori.php" class="text-white no-decoration">Lihat Detail</a></p>
-                            </div>
-                        </div>
+        <h1 class="dashboard-header">Welcome, <?php echo $_SESSION['username']; ?>!</h1>
+
+        <div class="row g-4">
+            <div class="col-lg-6 col-md-6">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center">
+                        <i class="fas fa-align-justify card-icon me-3"></i>
+                        <h2 class="card-title mb-0">Kategori</h2>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Total: <?php echo $jumlahkategori; ?> Kategori</p>
+                        <a href="kategori.php" class="link-custom">Lihat Detail</a>
                     </div>
                 </div>
+            </div>
 
-                <div class="col-lg-4 col-md-6 col-12 mb-3">
-                    <div class="summary-produk p-3">
-                        <div class="row">
-                            <div class="col-6">
-                                <i class="fas fa-box fa-7x text-black-50"></i>
-                            </div>
-                            <div class="col-6 text-white">
-                                <h3 class="fs-2">Produk</h3>
-                                <p class="fs-4"><?php echo $jumlahproduk;?> Produk</p>
-                                <p><a href="kategori.php" class="text-white no-decoration">Lihat Detail</a></p>
-                            </div>
-                        </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center">
+                        <i class="fas fa-box card-icon me-3"></i>
+                        <h2 class="card-title mb-0">Produk</h2>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Total: <?php echo $jumlahproduk; ?> Produk</p>
+                        <a href="kategori.php" class="link-custom">Lihat Detail</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="../fontawesome/js/all.min.js"></script>
